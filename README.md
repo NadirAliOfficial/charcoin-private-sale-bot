@@ -113,4 +113,4 @@ charcoin-private-sale-bot/
 ## 📄 License
 
 MIT License — intended for internal use by the CharCoin Foundation.
-<!-- updated: 2024-06-21-r01 -->
+<!-- updated: 2024-10-09-r01 -->

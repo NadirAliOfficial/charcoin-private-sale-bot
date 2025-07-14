@@ -6,6 +6,8 @@ import requests
 from dotenv import load_dotenv
 from solana.rpc.api import Client
 from solana.keypair import Keypair
+from utils.pricing import get_char_price
+from utils.jupiter import execute_jupiter_swap
 
 # Load environment variables
 load_dotenv()
@@ -48,11 +50,6 @@ def load_private_key(wallet_address):
     return Keypair.from_secret_key(bytes(secret))
 
 
-def execute_swap_via_jupiter(keypair, amount):
-    # Stub for CHAR→USDC swap via Jupiter
-    print(f"🔁 Swap {amount:.2f} CHAR from {keypair.public_key}")
-
-
 def process_investor(inv):
     total     = inv["total_tokens"]
     staked    = total * inv["staking_percentage"]
@@ -71,7 +68,7 @@ def process_investor(inv):
 
             # Execute micro-sells
             for _ in range(FRACTIONS_PER_STAGE):
-                execute_swap_via_jupiter(keypair, fraction)
+                execute_jupiter_swap(keypair, fraction)
                 time.sleep(1)
 
             stage["completed"] = True

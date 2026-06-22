@@ -23,7 +23,7 @@ FRACTIONS_PER_STAGE   = 20  # micro-sells per stage
 client = Client(RPC_URL)
 
 # Load investor configurations
-with open("investors.json") as f:
+with open("investors.json", encoding="utf-8") as f:
     investors = json.load(f)
 
 
@@ -44,7 +44,7 @@ def get_char_price():
 
 def load_private_key(wallet_address):
     # Load the private key for a given wallet
-    with open("private_keys.json") as f:
+    with open("private_keys.json", encoding="utf-8") as f:
         keys = json.load(f)
     secret = keys.get(wallet_address)
     return Keypair.from_secret_key(bytes(secret))
